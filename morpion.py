@@ -15,7 +15,7 @@ rond = pygame.image.load("rond.png").convert_alpha()
 
 pygame.display.flip()
 
-morpion = [[0,0,0],[0,1,0],[0,0,0]]
+morpion = [[0,0,0],[0,0,0],[0,0,0]]
 
 continuer = 1
 
@@ -26,20 +26,19 @@ while continuer:
 			continuer = 0      #On arrête la boucle
 
 		if event.type == MOUSEBUTTONDOWN and event.button == 1:
-			morpionSave = morpion
-			for k in range(2):
-				if k*100<event.pos[1]<(k+1)*100:
-					colonne = morpion.pop(k)
-					for l in range(2):
+			print event.pos
+			for k in range(3):
+				if k*100<event.pos[0]<(k+1)*100:
+					#colonne = morpion.pop(k)
+					print k
+					for l in range(3):
 						if l*100<event.pos[1]<(l+1)*100:
-							signe=colonne.pop(l)
-							print signe
-							if signe!=0:
-								morpion = morpionSave
-							else:
-								colonne.insert(l,1)
-								morpion.insert(k,colonne)
-								print morpion
+							#colonne = morpion.pop(k)
+							#signe=colonne.pop(l)
+							signe = morpion[k][l]
+							print k,l
+							if signe == 0:
+								morpion[k][l]=1
 
 
 
