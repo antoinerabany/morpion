@@ -39,10 +39,39 @@ def Somme(morpion):
 
 
 
-fenetre = pygame.display.set_mode((300, 300))
+fenetre = pygame.display.set_mode((300, 400))
 
 fond = pygame.image.load("background.jpg").convert()
 fenetre.blit(fond, (0,0))
+
+font = pygame.font.Font(None,90)
+
+fenetre.blit(font.render("Menu", 1, (255,0,0)), (0,0))
+fenetre.blit(font.render("1 joueur", 1, (255,0,0)), (0,100))
+fenetre.blit(font.render("2 joueurs", 1, (255,0,0)), (0,200))
+fenetre.blit(font.render("Quitter", 1, (255,0,0)), (0,300))
+
+pygame.display.flip()
+
+menu = 1
+
+#Affichage du menu
+while menu:
+	for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+		if event.type == QUIT:     #Si un de ces événements est de type QUIT
+			menu = 0     #On arrête la boucle
+		if event.type == MOUSEBUTTONDOWN and event.button == 1:
+			if 100<event.pos[1]<200:
+				continuer = 1
+				joueurs = 1
+				menu = 0
+			if 200<event.pos[1]<300:
+				continuer = 1
+				joueurs = 2
+				menu = 0
+			if 300<event.pos[1]<400:
+				continuer = 0
+				menu = 0
 
 #Chargement et collage du personnage
 croix = pygame.image.load("croix.png").convert_alpha()
@@ -53,7 +82,6 @@ pygame.display.flip()
 
 morpion = [[0,0,0],[0,0,0],[0,0,0]]
 
-continuer = 1
 tour = 0
 
 #Boucle infinie
